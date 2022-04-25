@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+#include <vector>
+#include <string.h>
+using namespace std;
+int main()
+{
+    int c1 = 0, sr = 0;
+    vector<int> lc,lit1, lit2, lit3;
+    vector<vector<string>> sym;
+    vector<vector<string>> v{
+        {"", "START", "200", " "},
+        {"", "MOVER", "BREG", "=1"},
+        {"", "LTORG", " ", " "},
+        {"", "ADD", "CREG", "=2"},
+        {"", "END", " ", " "}};
+       
+    int num = stoi(v[0][2]), ST = 205;
+
+    //lccounter:
+   
+    if (v[0][1] == "START")
+    {
+        lc.push_back(num);
+    }
+   
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = 0; j < v[i].size(); j++)
+        {
+            cout << v[i][j] << "\t ";
+        }
+        if(v[i][1]=="LTORG" || v[i][1]=="END")
+        {
+            lit3.push_back(num);
+        }
+       
+        if (v[i][1] == "MOVER" || v[i][1] == "ADD" || v[i][1] == "LTORG" || v[i][1] == "DC" || v[i][1] == "END")
+        {
+            lc.push_back(num);
+            num++;
+        }
+        if (v[i][1] == "DS")
+        {
+            lc.push_back(num);
+            num += stoi(v[i][2]);
+        }
+        if (v[i][1] == "ORIGIN")
+        {
+            lc.push_back(num);
+            string a = (v[i][2]).substr(3, 5);
+            num = ST + stoi(a);
+        }
+        cout << lc[i];
+        cout << endl;
+    }
+    //literal:
+   
+    for(int i=0;i<v.size();i++)
+    {
+        string a =(v[i][3]).substr(0,1);
+       
+        if(a == "=")
+        {
+            string c =(v[i][3]).substr(1,2);
+            int tmp1 = stoi(c);
+           
+            lit1.push_back(sr);
+            sr+=1;
+           
+            lit2.push_back(tmp1);
+        }
+    }
+    if(c1==0)
+    {        
+        cout<<endl<<"Literal Table:"<<endl;
+        cout<<"Sr. No "<<"\tName "<<"\tAddress"<<endl;
+        c1+=1;
+    }
+    for(int i = 0; i < 2; i++)
+    {
+        cout<<lit1[i]<<"\t ";
+        cout<<lit2[i]<<"\t ";
+        cout<<lit3[i]<<"\t ";
+        cout<<endl;
+    }
+    return 0;
+}
