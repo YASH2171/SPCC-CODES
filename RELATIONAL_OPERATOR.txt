@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    getline(cin,s);
+    int n=s.length();
+    if(n==2){
+    if(s[n-2]=='<')
+    {
+        if((s[n-1]=='>')){
+            cout<<"NE\n";
+        }
+       else if(s[n-1]=='='){
+            cout<<"LE\n";
+        }
+        else{
+            cout<<"Invalid\n";
+        }
+    }
+    else
+        if(s[n-2]=='>'){
+        if(s[n-1]=='='){
+            cout<<"GE\n";
+        }
+        else{
+            cout<<"Invalid\n";
+    }
+        }
+    else if(s[n-2]=='=')
+    {
+        if(s[n-1]=='=')
+        {
+           cout<<"E\n";
+        }
+        else{
+            cout<<"Invalid\n";
+        }
+    }
+    }
+   
+    else{
+        if(s[0]=='<'){
+            cout<<"L\n";
+        }
+        else if(s[0]=='>'){
+            cout<<"G\n";
+        }
+        else{
+            cout<<"invalid\n";
+        }
+    }
+    return 0;
+}
