@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+#include <vector>
+#include <string.h>
+using namespace std;
+int main()
+{
+    int c1 = 0, sr = 0;
+    vector<int> lc;
+    vector<vector<string>> sym;
+    vector<vector<string>> v{
+        {"", "START", "200", " "},
+        {"DATA", "DC", "5", " "},
+        {"ST  ", "DS", "10", " "},
+        {"", "END", " ", " "}};
+       
+    int num = stoi(v[0][2]), ST = 205;
+
+    //lccounter:
+   
+    if (v[0][1] == "START")
+    {
+        lc.push_back(num);
+    }
+   
+    for (int i = 0; i < v.size(); i++)
+    {
+        for (int j = 0; j < v[i].size(); j++)
+        {
+            cout << v[i][j] << "\t ";
+        }
+       
+        if (v[i][1] == "MOVER" || v[i][1] == "ADD" || v[i][1] == "LTORG" || v[i][1] == "DC" || v[i][1] == "END")
+        {
+            lc.push_back(num);
+            num++;
+        }
+        if (v[i][1] == "DS")
+        {
+            lc.push_back(num);
+            num += stoi(v[i][2]);
+        }
+        if (v[i][1] == "ORIGIN")
+        {
+            lc.push_back(num);
+            string a = (v[i][2]).substr(3, 5);
+            num = ST + stoi(a);
+        }
+        cout << lc[i];
+        cout << endl;
+    }
+   
+    //symbol:
+   
+   int b=0;
+    cout << "--- SYMBOL TABLE ---" << endl;
+    cout << "\tname\taddress\tlength" << endl;
+    for (int i = 0; i < v.size(); i++)
+    {
+        string a = (v[i][0]);
+        if (a.size() != 0)
+        {
+            cout << b++ << "\t";
+            cout << a << "\t";
+            if (a == "DATA")
+            {
+                cout << lc[i] << "\t";
+            }
+            else
+            {
+                cout << lc[i] << "\t";
+            }
+            cout << "1\t";
+            cout << endl;
+        }
+    }
+    for (int i = 0; i < sym.size(); i++)
+    {
+        for (int j = 0; j < sym[i].size(); j++)
+        {
+            cout << sym[i][j] << " ";
+        }
+        cout << endl;
+    }
+   
+    for (int i = 0; i < sym.size(); i++)
+    {
+        for (int j = 0; j < sym[i].size(); j++)
+        {
+            cout << sym[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
