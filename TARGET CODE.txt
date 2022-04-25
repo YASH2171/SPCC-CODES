@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int k = 0;
+    int n ;
+    cout<<"Enter the number of line: "<<endl;
+    cin>>n;
+    string s[n];
+    cout<<"Enter the 3-address code:"<<endl;
+    for (int i = 0; i < n; i++)
+    {
+        cin>>s[i];
+    }
+    int j = 0;
+    for (int i = 0 ; i < (2*n); i++)
+    {
+        cout<<"MOV "<<"R"<<k<<","<<s[i][j+2]<<endl;
+        k++;
+        cout<<"MOV "<<"R"<<k<<","<<s[i][j+4]<<endl;
+        if (s[i][j+3] == '+')
+        {
+        cout<<"ADD "<<"R"<<k-1<<","<<"R"<<k<<endl;   
+        }
+        else if (s[i][j+3]== '-')
+        {
+        cout<<"SUB "<<"R"<<k-1<<","<<"R"<<k<<endl;   
+        }
+        else if (s[i][j+3]== '*')
+        {
+        cout<<"MUL "<<"R"<<k-1<<","<<"R"<<k<<endl;   
+        }
+        else if (s[i][j+3]== '/')
+        {
+        cout<<"DIV "<<"R"<<k-1<<","<<"R"<<k<<endl;   
+        }
+        cout<<"MOV "<<s[i][0]<<","<<"R"<<k-1<<endl;
+        k++;
+    }
+}
